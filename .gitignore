@@ -1,0 +1,19 @@
+# 📁 ARQUIVO: .gitignore
+# 🧠 RESPONSÁVEL POR: Ignorar arquivos gerados, segredos e builds
+# 🔗 DEPENDÊNCIAS: Git
+
+node_modules/
+dist/
+build/
+coverage/
+*.log
+logs/
+backend/data/
+backend/.env.local
+frontend/.env.local
+backend/.env.runtime
+frontend/.env.runtime
+backend/.env
+frontend/.env
+.DS_Store
+.vscode/

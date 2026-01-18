@@ -1,0 +1,34 @@
+# 📁 ARQUIVO: docker-compose.yml
+# 🧠 RESPONSÁVEL POR: Subir backend + frontend em containers
+# 🔗 DEPENDÊNCIAS: Docker, Docker Compose
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env.example
+    environment:
+      - NODE_ENV=production
+      - HOST=0.0.0.0
+      - PORT=4100
+      - SQLITE_DB_NAME=digitacao
+    ports:
+      - "4100:4100"
+    volumes:
+      - ./backend/data:/app/data
+      - ./backend/logs:/app/logs
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    env_file:
+      - ./frontend/.env.example
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3100:80"
+    depends_on:
+      - backend

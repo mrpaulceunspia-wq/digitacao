@@ -1,0 +1,44 @@
+/* ARQUIVO: frontend/src/styles/buttons.css
+ * RESPONSAVEL POR: Estilos de botoes
+ * DEPENDENCIAS: CSS puro
+ */
+
+.btn {
+  border: 0;
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-2);
+  font-weight: var(--weight-bold);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+
+.btn--primary {
+  background: var(--grad-primary);
+  box-shadow: var(--shadow-2);
+}
+
+.btn--secondary {
+  background: var(--grad-secondary);
+  box-shadow: var(--shadow-2);
+}
+
+.btn--danger {
+  background: var(--grad-danger);
+  box-shadow: var(--shadow-2);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

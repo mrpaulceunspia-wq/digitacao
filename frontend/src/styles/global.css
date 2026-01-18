@@ -1,0 +1,69 @@
+/* ARQUIVO: frontend/src/styles/global.css
+ * RESPONSAVEL POR: Reset e estilos globais
+ * DEPENDENCIAS: CSS puro
+ */
+
+/* Reset */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: radial-gradient(900px 560px at 12% 0%, rgba(42, 157, 143, 0.18), transparent 60%),
+    radial-gradient(860px 520px at 88% 6%, rgba(242, 176, 75, 0.18), transparent 60%),
+    linear-gradient(180deg, #f7f5f0 0%, #f3f2ed 45%, #efeee9 100%);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.linc-heading {
+  margin: 0;
+  font-size: var(--font-size-6);
+  font-family: var(--font-sans);
+  letter-spacing: 0.2px;
+  line-height: var(--line-1);
+}
+
+.linc-text {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Toasts */
+.linc-toast-wrap {
+  position: fixed;
+  bottom: var(--space-7);
+  right: var(--space-7);
+  display: grid;
+  gap: var(--space-3);
+  z-index: 2000;
+}
+
+.linc-toast {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-4) var(--space-5);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-3);
+  width: min(420px, calc(100vw - var(--space-11)));
+}
+
+.linc-toast__msg {
+  color: var(--text);
+  font-size: var(--font-size-3);
+  line-height: var(--line-2);
+}

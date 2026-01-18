@@ -1,0 +1,33 @@
+<!-- ARQUIVO: backend/src/pdf/templates/relatorio.html
+RESPONSAVEL POR: Template HTML do relatorio
+DEPENDENCIAS: tokens.css, base.css, presets.css
+-->
+
+<!DOCTYPE html>
+<html class="pdf pdf--{{preset}}">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Relatorio</title>
+    {{styles}}
+  </head>
+  <body>
+    <div class="pdf-page">
+      <h1 class="pdf-title">Relatorio</h1>
+      <p class="pdf-meta">Gerado automaticamente.</p>
+      <table class="pdf-table">
+        <thead>
+          <tr>
+            <th>Campo</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Exemplo</td>
+            <td>Conteudo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

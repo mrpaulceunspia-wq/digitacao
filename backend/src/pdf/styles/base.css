@@ -1,0 +1,45 @@
+/* ARQUIVO: backend/src/pdf/styles/base.css
+ * RESPONSAVEL POR: Estilos base do PDF
+ * DEPENDENCIAS: tokens.css
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--pdf-font-family);
+  font-size: var(--pdf-font-size);
+  line-height: var(--pdf-line-height);
+  color: var(--pdf-text);
+}
+
+.pdf-page {
+  padding: var(--pdf-space-5);
+}
+
+.pdf-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 var(--pdf-space-3);
+}
+
+.pdf-meta {
+  color: var(--pdf-muted);
+  margin: 0 0 var(--pdf-space-3);
+}
+
+.pdf-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pdf-table th,
+.pdf-table td {
+  border: 1px solid var(--pdf-border);
+  padding: var(--pdf-space-2);
+  text-align: left;
+}

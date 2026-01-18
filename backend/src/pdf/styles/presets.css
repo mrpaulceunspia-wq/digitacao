@@ -1,0 +1,27 @@
+/* ARQUIVO: backend/src/pdf/styles/presets.css
+ * RESPONSAVEL POR: Presets de densidade (compact/normal/loose)
+ * DEPENDENCIAS: tokens.css
+ */
+
+.pdf--compact {
+  --pdf-font-size: 11px;
+  --pdf-line-height: 1.25;
+  --pdf-space-2: 6px;
+  --pdf-space-3: 10px;
+  --pdf-space-4: 12px;
+  --pdf-space-5: 16px;
+}
+
+.pdf--normal {
+  --pdf-font-size: 12px;
+  --pdf-line-height: 1.4;
+}
+
+.pdf--loose {
+  --pdf-font-size: 13px;
+  --pdf-line-height: 1.6;
+  --pdf-space-2: 10px;
+  --pdf-space-3: 14px;
+  --pdf-space-4: 18px;
+  --pdf-space-5: 24px;
+}

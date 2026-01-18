@@ -1,0 +1,76 @@
+/* ARQUIVO: frontend/src/styles/variables.css
+ * RESPONSAVEL POR: Paleta centralizada + tokens de tipografia, espaco e layout
+ * DEPENDENCIAS: CSS puro
+ */
+
+:root {
+  /* Cores */
+  --bg: #f3f2ed;
+  --panel: #ffffff;
+  --panel-elev: #f7f8fb;
+  --text: #1f2937;
+  --muted: #5b6472;
+  --border: #d7dbe2;
+  --ring: rgba(28, 110, 140, 0.2);
+
+  /* Gradientes */
+  --grad-primary: linear-gradient(135deg, #f5f6f7, #dfe3e7);
+  --grad-secondary: linear-gradient(135deg, #f5f6f7, #dfe3e7);
+  --grad-danger: linear-gradient(135deg, #f5f6f7, #dfe3e7);
+
+  /* Tipografia */
+  --font-sans: 'Aptos Narrow', 'Aptos', 'Arial Narrow', 'Segoe UI', Arial, sans-serif;
+  --font-serif: 'Newsreader', 'Georgia', serif;
+  --font-size-1: 12px;
+  --font-size-2: 13px;
+  --font-size-3: 14px;
+  --font-size-4: 16px;
+  --font-size-5: 18px;
+  --font-size-6: 22px;
+  --font-size-7: 28px;
+  --line-1: 1.1;
+  --line-2: 1.25;
+  --line-3: 1.4;
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Espacamento */
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 8px;
+  --space-4: 10px;
+  --space-5: 12px;
+  --space-6: 14px;
+  --space-7: 16px;
+  --space-8: 18px;
+  --space-9: 20px;
+  --space-10: 24px;
+  --space-11: 28px;
+  --space-12: 32px;
+
+  /* Layout */
+  --container: 1200px;
+  --radius-1: 10px;
+  --radius-2: 12px;
+  --radius-3: 14px;
+  --radius-pill: 999px;
+  --shadow-1: 0 16px 32px rgba(15, 23, 42, 0.12);
+  --shadow-2: 0 10px 18px rgba(31, 41, 55, 0.12);
+  --gap: var(--space-5);
+  --logo-size: 82px;
+  --modal-max-width: 980px;
+  --textarea-min-height: 90px;
+  --suggest-max-height: 260px;
+  --table-col-xxs: 80px;
+  --table-col-xs: 90px;
+  --table-col-sm: 110px;
+  --table-col-md: 120px;
+  --table-col-lg: 140px;
+  --table-col-xl: 160px;
+  --table-col-xxl: 200px;
+
+  /* Inputs */
+  --input-bg: #f7f8fb;
+  --input-bg-focus: #eef2f6;
+}

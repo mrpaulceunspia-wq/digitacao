@@ -1,0 +1,24 @@
+{
+  "name": "dig-cad-linc",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/ports.mjs",
+    "dev": "npm run predev && concurrently -n server,client \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm --prefix backend run dev",
+    "dev:client": "npm --prefix frontend run dev",
+    "doctor": "node scripts/doctor.mjs",
+    "validate": "node scripts/validate-messages.mjs && node scripts/validate-sql-naming.mjs",
+    "lint": "npm --prefix backend run lint && npm --prefix frontend run lint",
+    "lint:fix": "npm --prefix backend run lint:fix && npm --prefix frontend run lint:fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "build": "npm --prefix backend run build && npm --prefix frontend run build",
+    "start": "npm --prefix backend run start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "prettier": "^3.3.3"
+  }
+}

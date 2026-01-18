@@ -1,0 +1,20 @@
+/* ARQUIVO: backend/src/pdf/styles/tokens.css
+ * RESPONSAVEL POR: Tokens do PDF (ALTERE AQUI)
+ * DEPENDENCIAS: CSS puro
+ */
+
+:root {
+  /* ALTERE AQUI: tipografia */
+  --pdf-font-family: 'Arial', sans-serif;
+  --pdf-font-size: 12px;
+  --pdf-line-height: 1.4;
+  --pdf-text: #111827;
+  --pdf-muted: #6b7280;
+  --pdf-border: #e5e7eb;
+  /* ALTERE AQUI: espacamentos */
+  --pdf-space-1: 4px;
+  --pdf-space-2: 8px;
+  --pdf-space-3: 12px;
+  --pdf-space-4: 16px;
+  --pdf-space-5: 20px;
+}
