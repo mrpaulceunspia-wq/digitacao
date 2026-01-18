@@ -57,6 +57,8 @@ export const PT_BR = Object.freeze({
     metros: 'Metros',
     largura: 'Largura',
     gramMedia: 'Gram. Media',
+    gramDe: 'Gram. De',
+    gramAte: 'Gram. Ate',
     inicio: 'Inicio',
     termino: 'Termino',
     tempo: 'Tempo',
@@ -88,6 +90,7 @@ export const PT_BR = Object.freeze({
     ofSearchTitle: 'Selecione a OF',
     ofSearchPlaceholder: 'Digite para buscar...',
     saved: 'Digitacao salva.',
+    gramCriterio: 'Busca de gramatura: ${criterio}.',
   },
   motivos: {
     title: 'Cadastro de Motivos',

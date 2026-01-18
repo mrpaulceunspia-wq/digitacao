@@ -13,10 +13,10 @@ import { useApp } from '../contexts/AppContext.jsx';
 import { atualizarDigitacao, buscarDigitacao, criarDigitacao } from '../services/digitacoesApi.js';
 import { listMotivos } from '../services/motivosApi.js';
 import { listPessoas } from '../services/pessoasApi.js';
-import { buscarOfs } from '../services/protheusApi.js';
+import { buscarGramatura, buscarOfs } from '../services/protheusApi.js';
 import { MSG } from '../ui/messages/index.js';
 import { notifier } from '../ui/notify/notifier.js';
-import { Card, Heading } from '../ui/primitives/index.js';
+import { Card, Heading, Text } from '../ui/primitives/index.js';
 
 function toMinutes(hhmm) {
   const m = String(hhmm || '').match(/^(\d{2}):(\d{2})$/);
@@ -83,6 +83,9 @@ export default function DigitacaoPage() {
   const [metros, setMetros] = useState('');
   const [largura, setLargura] = useState('');
   const [gramMedia, setGramMedia] = useState('');
+  const [gramDe, setGramDe] = useState('');
+  const [gramAte, setGramAte] = useState('');
+  const [gramCriterio, setGramCriterio] = useState('');
 
   const [inicio, setInicio] = useState('');
   const [termino, setTermino] = useState('');
@@ -283,6 +286,37 @@ export default function DigitacaoPage() {
   }, [pesoLiquido, metros, largura]);
 
   useEffect(() => {
+    if (!linha || !codProduto) {
+      setGramDe('');
+      setGramAte('');
+      setGramCriterio('');
+      return;
+    }
+
+    buscarGramatura(codProduto, linha)
+      .then((data) => {
+        setGramDe(data?.gramDe ? String(data.gramDe).replace('.', ',') : '');
+        setGramAte(data?.gramAte ? String(data.gramAte).replace('.', ',') : '');
+        setGramCriterio(data?.criterio || '');
+      })
+      .catch(() => {
+        setGramDe('');
+        setGramAte('');
+        setGramCriterio('');
+      });
+  }, [linha, codProduto]);
+
+  const gramValue = parseDecimal(gramMedia);
+  const gramDeValue = parseDecimal(gramDe);
+  const gramAteValue = parseDecimal(gramAte);
+  const gramStatus =
+    Number.isNaN(gramValue) || Number.isNaN(gramDeValue) || Number.isNaN(gramAteValue)
+      ? ''
+      : gramValue >= gramDeValue && gramValue <= gramAteValue
+      ? 'ok'
+      : 'warn';
+
+  useEffect(() => {
     const query = ofNumeroBusca.trim();
     setOfSuggestError('');
     if (!query) {
@@ -342,6 +376,20 @@ export default function DigitacaoPage() {
     setOfSuggestions([]);
     setOfSuggestOpen(false);
     setOfSuggestError('');
+
+    if (linha && it.codProduto) {
+      buscarGramatura(it.codProduto, linha)
+        .then((data) => {
+          setGramDe(data?.gramDe ? String(data.gramDe).replace('.', ',') : '');
+          setGramAte(data?.gramAte ? String(data.gramAte).replace('.', ',') : '');
+          setGramCriterio(data?.criterio || '');
+        })
+        .catch(() => {
+          setGramDe('');
+          setGramAte('');
+          setGramCriterio('');
+        });
+    }
   }
 
   function handleOfFocus() {
@@ -502,7 +550,15 @@ export default function DigitacaoPage() {
         <FormField labelKey="pesoLiquido" value={pesoLiquido} onChange={setPesoLiquido} />
         <FormField labelKey="metros" value={metros} onChange={setMetros} />
         <FormField labelKey="largura" value={largura} onChange={setLargura} />
-        <FormField labelKey="gramMedia" value={gramMedia} onChange={setGramMedia} readOnly />
+        <FormField labelKey="gramDe" value={gramDe} onChange={setGramDe} readOnly />
+        <FormField labelKey="gramAte" value={gramAte} onChange={setGramAte} readOnly />
+        <FormField
+          labelKey="gramMedia"
+          value={gramMedia}
+          onChange={setGramMedia}
+          readOnly
+          inputClassName={gramStatus ? `linc-input--${gramStatus}` : ''}
+        />
 
         <FormField labelKey="inicio" type="time" value={inicio} onChange={setInicio} />
         <FormField labelKey="termino" type="time" value={termino} onChange={setTermino} />
@@ -540,6 +596,9 @@ export default function DigitacaoPage() {
             {MSG.get('motivos', 'add')}
           </Link>
         </div>
+        {gramCriterio ? (
+          <Text className="linc-field--full">{MSG.get('digitacao', 'gramCriterio', { criterio: gramCriterio })}</Text>
+        ) : null}
         <label className="linc-field linc-field--full">
           <span className="linc-field__label">{MSG.get('forms', 'observacoes')}</span>
           <textarea className="linc-textarea" value={observacoes} onChange={(e) => setObservacoes(e.target.value)} />

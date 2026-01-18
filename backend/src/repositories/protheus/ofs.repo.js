@@ -59,5 +59,52 @@ export function createOfsRepo({ mssqlPool, logger }) {
         });
       }
     },
+
+    async getGramatura({ produto, linha }) {
+      if (!mssqlPool) {
+        throw new AppError({
+          status: 503,
+          code: 'MSSQL_UNAVAILABLE',
+          message: MSG.get('db', 'mssqlDisabled'),
+        });
+      }
+
+      try {
+        const req = mssqlPool.request();
+        const linhaLabel = `LINHA ${linha}`;
+        req.input('produto', sql.VarChar, produto);
+        req.input('linha', sql.VarChar, linhaLabel);
+
+        const query = `
+          SELECT TOP 1
+            QP7.QP7_LIC   AS gramDe,
+            QP7.QP7_LSC   AS gramAte,
+            QQK.QQK_DESCRI AS criterio
+          FROM QQK010 QQK
+          INNER JOIN QP7010 QP7
+            ON RTRIM(QP7.QP7_PRODUT) = RTRIM(QQK.QQK_PRODUT)
+           AND QP7.D_E_L_E_T_ <> '*'
+          WHERE RTRIM(QQK.QQK_PRODUT) = RTRIM(@produto)
+            AND QQK.D_E_L_E_T_ <> '*'
+            AND (RTRIM(QQK.QQK_DESCRI) = @linha OR RTRIM(QQK.QQK_DESCRI) = 'FINAL')
+          ORDER BY CASE WHEN RTRIM(QQK.QQK_DESCRI) = @linha THEN 0 ELSE 1 END
+        `;
+
+        const result = await req.query(query);
+        const row = result.recordset?.[0] || null;
+        return row;
+      } catch (_err) {
+        if (logger?.error) {
+          const detail = _err?.message ? _err.message : String(_err);
+          const mssqlCode = _err?.code || null;
+          logger.error(JSON.stringify({ code: 'PROTHEUS_QUERY_ERROR', detail, mssqlCode }));
+        }
+        throw new AppError({
+          status: 502,
+          code: 'PROTHEUS_QUERY_ERROR',
+          message: MSG.get('protheus', 'queryError'),
+        });
+      }
+    },
   });
 }

@@ -18,5 +18,17 @@ export function createProtheusService(deps) {
       }
       return { items: ofs, message: MSG.get('protheus', 'ofsOk', { count: ofs.length }) };
     },
+
+    async getGramatura({ produto, linha }) {
+      const row = await repo.getGramatura({ produto, linha });
+      if (!row) {
+        return { gramDe: null, gramAte: null, criterio: null };
+      }
+      return {
+        gramDe: row.gramDe ?? null,
+        gramAte: row.gramAte ?? null,
+        criterio: row.criterio ?? null,
+      };
+    },
   });
 }

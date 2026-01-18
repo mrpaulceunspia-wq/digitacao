@@ -18,5 +18,17 @@ export function createProtheusController(deps) {
         return next(err);
       }
     },
+
+    async getGramatura(req, res, next) {
+      try {
+        const data = await service.getGramatura({
+          produto: req.query.produto,
+          linha: req.query.linha,
+        });
+        return ok(res, data);
+      } catch (err) {
+        return next(err);
+      }
+    },
   });
 }

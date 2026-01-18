@@ -10,3 +10,9 @@ export async function buscarOfs(numero) {
   const res = await apiFetch(`/api/v1/protheus/ofs?${qs.toString()}`);
   return res.data;
 }
+
+export async function buscarGramatura(produto, linha) {
+  const qs = new URLSearchParams({ produto, linha });
+  const res = await apiFetch(`/api/v1/protheus/gramatura?${qs.toString()}`);
+  return res.data;
+}

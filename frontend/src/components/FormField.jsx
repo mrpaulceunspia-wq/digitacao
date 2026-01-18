@@ -14,12 +14,13 @@ export default function FormField({
   readOnly = false,
   onKeyDown,
   inputRef,
+  inputClassName = '',
 }) {
   return (
     <label className="linc-field">
       <span className="linc-field__label">{MSG.get('forms', labelKey)}</span>
       <input
-        className="linc-input"
+        className={['linc-input', inputClassName].filter(Boolean).join(' ')}
         type={type}
         value={value ?? ''}
         onChange={(e) => onChange(e.target.value)}

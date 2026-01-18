@@ -63,6 +63,16 @@
   box-shadow: 0 0 0 var(--space-2) var(--ring);
 }
 
+.linc-input--ok {
+  border-color: rgba(16, 185, 129, 0.55);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.linc-input--warn {
+  border-color: rgba(245, 158, 11, 0.6);
+  background: rgba(245, 158, 11, 0.1);
+}
+
 .linc-textarea {
   min-height: var(--textarea-min-height);
   resize: vertical;
