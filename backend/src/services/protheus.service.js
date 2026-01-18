@@ -9,6 +9,7 @@ import { createOfsRepo } from '../repositories/protheus/ofs.repo.js';
 
 export function createProtheusService(deps) {
   const repo = createOfsRepo(deps);
+  const { logger } = deps;
 
   return Object.freeze({
     async listOfs(numero) {
@@ -23,6 +24,15 @@ export function createProtheusService(deps) {
       const row = await repo.getGramatura({ produto, linha });
       if (!row) {
         return { gramDe: null, gramAte: null, criterio: null };
+      }
+      if (logger?.say) {
+        logger.say('info', 'protheus', 'gramaturaOk', {
+          produto,
+          linha,
+          criterio: row.criterio ?? '-',
+          gramDe: row.gramDe ?? '-',
+          gramAte: row.gramAte ?? '-',
+        });
       }
       return {
         gramDe: row.gramDe ?? null,

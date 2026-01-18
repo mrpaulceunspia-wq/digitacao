@@ -45,5 +45,6 @@ export const PT_BR = Object.freeze({
     ofsOk: 'OFs encontradas: ${count}.',
     ofsNone: 'Nenhuma OF encontrada para o número informado.',
     queryError: 'Falha ao consultar OFs no Protheus.',
+    gramaturaOk: 'Gramatura ok (${produto} / linha ${linha} / ${criterio}): ${gramDe}-${gramAte}.',
   },
 });
